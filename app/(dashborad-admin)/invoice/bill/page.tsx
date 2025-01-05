@@ -3,5 +3,9 @@
 import Bill from '@/modules/invoice/components/bill';
 
 export default function Page() {
-  return <Bill />;
+  return (
+    <div className="bg-white p-6">
+      <Bill />
+    </div>
+  );
 }

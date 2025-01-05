@@ -114,7 +114,7 @@ export default function Bill() {
       <div className=" col-span-3 flex justify-between">
         <div className="border-r flex-1 h-full px-3 py-6">
           <h3 className=" font-semibold mb-6">Catatan:</h3>
-          <QRCodeCanvas value="http://localhost:3000/invoice/bill" />
+          <QRCodeCanvas value={`${process.env.BASE_URL}/invoice/bill`} />
         </div>
         <div className="border px-3 text-sm">
           {dataDetail.map((item, index) => (

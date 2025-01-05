@@ -83,7 +83,7 @@ export default function DetailInvoice() {
           </div>
         </SectionSubHeading>
       </div>
-      <div className="space-y-4 bg-white p-6">
+      <div className="bg-white p-6">
         <Bill />
       </div>
     </Container>
