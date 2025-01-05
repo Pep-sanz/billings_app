@@ -7,7 +7,7 @@ export function middleware(req: NextRequest) {
   const currentPathname = req?.nextUrl.pathname;
 
   if (currentPathname == '/') {
-    return NextResponse.redirect(new URL('/sign-in', req.url));
+    return NextResponse.redirect(new URL('/dashboard', req.url));
   }
 
   const pathAllowedUnSignin = ['/sign-in', '/forgot-password'];

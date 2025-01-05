@@ -24,7 +24,6 @@ import moment from 'moment';
 
 import { useDropzone } from 'react-dropzone';
 import { Check, ChevronsUpDown, FileIcon, Paperclip, X } from 'lucide-react';
-import { useUploadFile } from '@/hooks/common.hook';
 import { Spinner } from '@/components/ui/spinner';
 import {
   Command,
@@ -207,7 +206,7 @@ const FormGenerator = ({ form, data, onSubmit, id, className }: Props) => {
                             // }
                           />
                           <CommandList>
-                            {/* <Spinner /> */}
+                            <Spinner />
                             <CommandEmpty>No framework found.</CommandEmpty>
 
                             {val?.options?.map((framework) => (
@@ -277,91 +276,91 @@ const FormGenerator = ({ form, data, onSubmit, id, className }: Props) => {
             );
           }
 
-          if (val.type == 'upload') {
-            const { mutate, status, data } = useUploadFile();
-            const onDrop = useCallback((acceptedFiles: File[]) => {
-              mutate(acceptedFiles[0]);
-            }, []);
+          // if (val.type == 'upload') {
+          //   const { mutate, status, data } = useUploadFile();
+          //   const onDrop = useCallback((acceptedFiles: File[]) => {
+          //     mutate(acceptedFiles[0]);
+          //   }, []);
 
-            useEffect(() => {
-              if (status == 'success') {
-                form.setValue(val.name, data.data?.url);
-              }
-            }, [status]);
-            const { getRootProps, getInputProps, isDragActive } = useDropzone({
-              onDrop,
-            });
-            return (
-              <div
-                key={val.name}
-                className={`${
-                  listColSpan[(val.grid as keyof typeof listColSpan) || 12]
-                } space-y-2`}
-              >
-                <p className="text-[14px]">{val.label}</p>
-                {!form.watch(val.name) ? (
-                  <div
-                    {...getRootProps()}
-                    className="flex w-full cursor-pointer flex-col items-center gap-1 rounded-lg border-2 border-dashed border-gray-200 p-6"
-                  >
-                    {status == 'pending' ? (
-                      <Spinner />
-                    ) : (
-                      <>
-                        {' '}
-                        <Input
-                          type="file"
-                          className="hidden"
-                          {...getInputProps()}
-                        />
-                        <FileIcon className="h-12 w-12" />
-                        <span className="text-sm font-medium text-gray-500">
-                          Drag and drop a file or click to browse
-                        </span>
-                        <span className="text-xs text-gray-500">
-                          PDF, image, video, or audio
-                        </span>
-                      </>
-                    )}
-                  </div>
-                ) : (
-                  <div className="flex w-full items-center justify-between rounded-md border px-4 py-2">
-                    <a
-                      target="_blank"
-                      href={form.watch(val.name)}
-                      className="flex items-center space-x-1 text-blue-500"
-                    >
-                      <Paperclip className="h-4 w-4" /> <span>Lihat file</span>
-                    </a>
-                    <X
-                      className="h-4 w-4 cursor-pointer text-red-500"
-                      onClick={() => {
-                        form.setValue(val.name, '');
-                      }}
-                    />
-                  </div>
-                )}
+          //   useEffect(() => {
+          //     if (status == 'success') {
+          //       form.setValue(val.name, data.data?.url);
+          //     }
+          //   }, [status]);
+          //   const { getRootProps, getInputProps, isDragActive } = useDropzone({
+          //     onDrop,
+          //   });
+          //   return (
+          //     <div
+          //       key={val.name}
+          //       className={`${
+          //         listColSpan[(val.grid as keyof typeof listColSpan) || 12]
+          //       } space-y-2`}
+          //     >
+          //       <p className="text-[14px]">{val.label}</p>
+          //       {!form.watch(val.name) ? (
+          //         <div
+          //           {...getRootProps()}
+          //           className="flex w-full cursor-pointer flex-col items-center gap-1 rounded-lg border-2 border-dashed border-gray-200 p-6"
+          //         >
+          //           {status == 'pending' ? (
+          //             <Spinner />
+          //           ) : (
+          //             <>
+          //               {' '}
+          //               <Input
+          //                 type="file"
+          //                 className="hidden"
+          //                 {...getInputProps()}
+          //               />
+          //               <FileIcon className="h-12 w-12" />
+          //               <span className="text-sm font-medium text-gray-500">
+          //                 Drag and drop a file or click to browse
+          //               </span>
+          //               <span className="text-xs text-gray-500">
+          //                 PDF, image, video, or audio
+          //               </span>
+          //             </>
+          //           )}
+          //         </div>
+          //       ) : (
+          //         <div className="flex w-full items-center justify-between rounded-md border px-4 py-2">
+          //           <a
+          //             target="_blank"
+          //             href={form.watch(val.name)}
+          //             className="flex items-center space-x-1 text-blue-500"
+          //           >
+          //             <Paperclip className="h-4 w-4" /> <span>Lihat file</span>
+          //           </a>
+          //           <X
+          //             className="h-4 w-4 cursor-pointer text-red-500"
+          //             onClick={() => {
+          //               form.setValue(val.name, '');
+          //             }}
+          //           />
+          //         </div>
+          //       )}
 
-                {/* <FormField
-                  control={form.control}
-                  name={val.name}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{val.label}</FormLabel>
-                      <FormControl>
-                        <Input
-                          // disabled={val}
-                          placeholder={val.placeholder}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                /> */}
-              </div>
-            );
-          }
+          //       {/* <FormField
+          //         control={form.control}
+          //         name={val.name}
+          //         render={({ field }) => (
+          //           <FormItem>
+          //             <FormLabel>{val.label}</FormLabel>
+          //             <FormControl>
+          //               <Input
+          //                 // disabled={val}
+          //                 placeholder={val.placeholder}
+          //                 {...field}
+          //               />
+          //             </FormControl>
+          //             <FormMessage />
+          //           </FormItem>
+          //         )}
+          //       /> */}
+          //     </div>
+          //   );
+          // }
 
           if (val.type == 'timepicker') {
             const [date, setDate] = useState<any>(

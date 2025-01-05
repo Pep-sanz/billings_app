@@ -1,10 +1,11 @@
+'use client';
+
 import FormGenerator from '@/components/elements/form-generator';
 import { Button } from '@/components/ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import * as Cookie from 'cookies-js';
 import { useRouter } from 'next/navigation';
 
 export const signinSchema = z.object({
@@ -24,7 +25,6 @@ const SignInForm = () => {
     // const { email, password } = form.getValues();
     // mutate({ email, password });
 
-    Cookie.set('token', 'token');
     router.push('/dashboard');
   };
   return (
